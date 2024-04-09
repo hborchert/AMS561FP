@@ -1,0 +1,11 @@
+dft
+ xc LDA
+ boys
+ maxsub 5
+end
+
+geometry
+units angstrom
+ Li    0.000000000000   0.000000000000  -1.444500000000
+ Na    0.000000000000   0.000000000000   1.444500000000
+end

@@ -1,0 +1,12 @@
+dft
+ xc LDA
+ boys
+ maxsub 5
+ nopen 3
+end
+
+geometry
+units angstrom
+ Al    0.000000000000   0.000000000000  -0.977500000000
+  C    0.000000000000   0.000000000000   0.977500000000
+end

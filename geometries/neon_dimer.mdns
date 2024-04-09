@@ -1,0 +1,11 @@
+dft
+ xc LDA
+ boys
+ maxsub 5
+end
+
+geometry
+units angstrom
+ Ne    0.000000000000   0.000000000000  -1.550000000000
+ Ne    0.000000000000   0.000000000000   1.550000000000
+end

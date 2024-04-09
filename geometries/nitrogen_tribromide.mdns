@@ -1,0 +1,14 @@
+dft
+ xc LDA
+ boys
+  maxsub 5
+ aobasis sto-3g
+end
+
+geometry
+units angstrom
+  N	 0.0000000	 0.0000000	 0.6567850
+  Br	 0.0000000	 1.7839900	-0.0437860
+  Br	 1.5449800	-0.8919950	-0.0437860
+  Br	-1.5449800	-0.8919950	-0.0437860
+end
