@@ -92,7 +92,7 @@ def distance(coord1, coord2):
 def get_charge(symbol):
     return elements[symbol]
 
-def coulomb_matrix(molecule):
+def coulomb_matrix(molecule,sort=False):
     # currently the largest molecule, needs to be generalized
     dimension=32
     
@@ -108,7 +108,10 @@ def coulomb_matrix(molecule):
                 coulomb_mat[i, j] = 0.5 * charges[i] ** 2.4
             else:
                 coulomb_mat[i, j] = charges[i] * charges[j] / distance(coords[i], coords[j])
-    
+    if sort:
+        row_norms = np.linalg.norm(coulomb_mat, axis=1)
+        sorted_indices = np.argsort(row_norms)[::-1]
+        coulomb_mat = coulomb_mat[sorted_indices]
     return coulomb_mat
 
 # go through input files in geometry folder and parse geometry block into dictonary mols
@@ -150,7 +153,7 @@ def geometry_parser():
                     break
     return mols
 
-def make_input(): 
+def make_input(sort=False): 
     # import data for corresponding method
     #b3lyp = pd.read_csv('b3lyp_eprec6.csv')
     #hf = pd.read_csv('hf_eprec6.csv')
@@ -163,7 +166,7 @@ def make_input():
     
     # create CM
     for item in mols.items():
-        mols_dict[item[0]] = coulomb_matrix(item[1]).flatten() 
+        mols_dict[item[0]] = coulomb_matrix(item[1], sort=sort).flatten() 
         #mols_vec.append(coulomb_matrix(item[1]).flatten())
         
     Y = pbe0['Energy'].astype(float)-lda['Energy'].astype(float)
