@@ -170,6 +170,11 @@ def make_input(sort=False):
         #mols_vec.append(coulomb_matrix(item[1]).flatten())
         
     Y = pbe0['Energy'].astype(float)-lda['Energy'].astype(float)
+
+    # dictionary to look up molecule name for a given energy difference
+    y_dict = {}
+    for i,j in zip(Y, pbe0['Unnamed: 0']):
+        y_dict[i] = j
     
     # need to align molecules with ediff from csv files
     mols_vec = []
@@ -178,5 +183,5 @@ def make_input(sort=False):
         mols_vec.append(mols_dict[i])
     
     X = np.array(mols_vec)
-    return X,Y
+    return X,Y,y_dict
 
